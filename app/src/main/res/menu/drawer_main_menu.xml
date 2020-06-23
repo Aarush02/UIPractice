@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+    <item android:id="@+id/nav_item_one"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="Electronics" />
+    <item android:id="@+id/nav_item_two"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="Fashion" />
+    <item android:id="@+id/nav_item_three"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="Home and Furniture" />
+    </group>
+    <group android:id="@+id/group_menu">
+    <item android:id="@+id/nav_item_four"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="TVs and Appliances" />
+    <item android:id="@+id/nav_item_five"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="Toys and Baby" />
+    </group>
+    <item android:title="Title 1">
+        <menu>
+            <item android:id="@+id/nav_item_six"
+                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:title="Beauty and Personal care" />
+            <item android:id="@+id/nav_item_seven"
+                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:title="Offer Zone" />
+        </menu>
+    </item>
+
+
+</menu>

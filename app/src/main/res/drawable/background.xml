@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle"
+            android:padding="10sp">
+            <gradient android:startColor="@color/colorPrimary"
+                android:centerColor="@color/colorAccent"
+                android:endColor="@color/colorPrimaryDark"/>
+            <corners android:bottomRightRadius="25sp"
+                android:topRightRadius="25sp"/>
+        </shape>
+    </item>
+    <item android:state_focused="true" android:state_pressed="true"
+        android:drawable="@color/colorPrimaryDark" />
+    <item android:state_focused="false" android:state_pressed="true"
+        android:drawable="@color/colorPrimary" />
+    <item android:drawable="@color/colorAccent" />
+</selector>
