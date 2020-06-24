@@ -13,6 +13,5 @@
         <item name="fontFamily">sans-serif</item>
         <item name="android:paddingLeft">20sp</item>
         <item name="android:textSize">25dp</item>
-
     </style>
 </resources>
