@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
-    <item android:id="@+id/nav_item_one"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Electronics" />
-    <item android:id="@+id/nav_item_two"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Fashion" />
-    <item android:id="@+id/nav_item_three"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Home and Furniture" />
+    <item android:id="@+id/nav_item_wish_list"
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+        android:title="Wishlist" />
+    </group>
+    <group>
+    <item android:id="@+id/nav_item_notification_setting"
+        android:icon="@drawable/ic_baseline_notifications_none_24"
+        android:title="Notification Settings" />
+    <item android:id="@+id/nav_item_privacy_policy"
+        android:icon="@drawable/ic_baseline_security_24"
+        android:title="Privacy Policy" />
+    <item android:id="@+id/nav_item_frequently_asked_questions"
+        android:icon="@drawable/ic_baseline_question_answer_24"
+        android:title="Frequently Asked Questions" />
+    <item android:id="@+id/nav_item_legal_information"
+        android:icon="@drawable/ic_baseline_description_24"
+        android:title="Legal Information" />
     </group>
     <group android:id="@+id/group_menu">
-    <item android:id="@+id/nav_item_four"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="TVs and Appliances" />
-    <item android:id="@+id/nav_item_five"
-        android:icon="@drawable/ic_baseline_person_outline_24"
-        android:title="Toys and Baby" />
+    <item android:id="@+id/nav_item_customer_support"
+        android:icon="@drawable/ic_baseline_headset_mic_24"
+        android:title="Rate our App" />
+    <item android:id="@+id/nav_item_make_a_suggestion"
+        android:icon="@drawable/ic_baseline_note_24"
+        android:title="Make a Suggestion" />
     </group>
-    <item android:title="Title 1">
+    <item android:title="More">
         <menu>
-            <item android:id="@+id/nav_item_six"
-                android:icon="@drawable/ic_baseline_person_outline_24"
-                android:title="Beauty and Personal care" />
-            <item android:id="@+id/nav_item_seven"
-                android:icon="@drawable/ic_baseline_person_outline_24"
-                android:title="Offer Zone" />
+            <item android:id="@+id/nav_item_profile_logout"
+                android:title="Logout" />
         </menu>
     </item>
 
