@@ -1,15 +1,43 @@
 package com.example.uipractice;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class SignUpActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     private Button buttonSignUp;
     private Button buttonLogInDisplay;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
+    private CheckBox checkBoxTerms;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(this,HomePageActivity.class));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,27 +45,77 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         buttonLogInDisplay =(Button) findViewById(R.id.button_log_in_item_display);
         buttonSignUp = (Button) findViewById(R.id.button_sign_up);
-        findViewById(R.id.button_sign_up).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.button_sign_up:
-                        startActivity(new Intent(SignUpActivity.this,HomePageActivity.class));
-                        break;
+        firebaseAuth = FirebaseAuth.getInstance();
+        editTextFirstName = (EditText) findViewById(R.id.edit_text_sign_up_page_enter_first_name);
+        editTextLastName = (EditText) findViewById(R.id.edit_text_sign_up_page_enter_last_name);
+        editTextEmail = (EditText) findViewById(R.id.edit_text_sign_up_page_enter_email);
+        editTextPassword = (EditText) findViewById(R.id.edit_text_sign_up_page_enter_password);
+        editTextConfirmPassword = (EditText) findViewById(R.id.edit_text_sign_up_page_enter__confirm_password);
+        checkBoxTerms = (CheckBox) findViewById(R.id.check_box_sign_up_page_terms_and_condition);
+        progressDialog = new ProgressDialog(this);
+        buttonSignUp.setOnClickListener(this);
+        buttonLogInDisplay.setOnClickListener(this);
+
+    }
+    private void registerUser(){
+        String firstName = editTextFirstName.getText().toString().trim();
+        String lastName = editTextLastName.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String password  = editTextPassword.getText().toString().trim();
+        String confirmPassword  = editTextConfirmPassword.getText().toString().trim();
+        if(TextUtils.isEmpty(firstName)){
+            editTextFirstName.setError("Please enter your first name");
+            return;
+        }
+        if(TextUtils.isEmpty(lastName)){
+            editTextLastName.setError("Please enter your last name");
+            return;
+        }
+        if(TextUtils.isEmpty(email)){
+            editTextEmail.setError("Please enter email");
+            return;
+        }
+        if(TextUtils.isEmpty(password)){
+            editTextPassword.setError("Please enter password");
+            return;
+        }
+        if(TextUtils.isEmpty(confirmPassword)){
+            editTextConfirmPassword.setError("Please re-enter password");
+            return;
+        }
+        if (!confirmPassword.equals(password))
+        {
+            editTextConfirmPassword.setError("Password do not match");
+        }
+        if (!checkBoxTerms.isChecked()){
+            checkBoxTerms.setError("Please select the box to accept the terms and condition of this application");
+        }
+        else {
+            progressDialog.setMessage("Registering...");
+            progressDialog.show();
+            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "User Authentication Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    progressDialog.dismiss();
                 }
 
-            }
-        });
-        findViewById(R.id.button_log_in_item_display).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.button_log_in_item_display:
-                        startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
-                        break;
-                }
 
-            }
-        });
+            });
+        }
+    }
+    @Override
+    public void onClick(View view) {
+        if (view == buttonSignUp) {
+            registerUser();
+        }
+        if (view == buttonLogInDisplay) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 }

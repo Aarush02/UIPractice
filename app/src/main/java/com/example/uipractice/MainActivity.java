@@ -8,7 +8,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int SPLASH_TIME_OUT = 2000;
+    private static final int SPLASH_TIME_OUT = 000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -23,6 +23,6 @@
         android:id="@+id/action_more"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_more_horiz_24"
-        android:title="More"
+        android:title="Nearby"
         app:showAsAction="ifRoom" />
 </menu>
