@@ -25,7 +25,7 @@ public class HomePageActivity extends AppCompatActivity implements BottomNavigat
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.bottom_navigation, fragment)
+                    .replace(R.id.fragment_container, fragment)
                     .commit();
             return true;
         }
