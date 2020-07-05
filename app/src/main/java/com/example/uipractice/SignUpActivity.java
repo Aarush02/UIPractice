@@ -1,9 +1,11 @@
 package com.example.uipractice;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -111,6 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         {
                             saveData.put("First Name", firstName);
                             saveData.put("Last Name", lastName);
+                            saveData.put("Username",firstName+' '+lastName);
                             saveData.put("Email", email);
                         }
                         current_user_db.setValue(saveData);
@@ -127,11 +130,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SignUpActivity.super.onBackPressed();
+                    }
+                }).create().show();
+    }
+    @Override
     public void onClick(View view) {
         if (view == buttonSignUp) {
             registerUser();
         }
         if (view == buttonLogInDisplay) {
+            finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
     }
