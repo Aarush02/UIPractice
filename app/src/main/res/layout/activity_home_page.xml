@@ -25,8 +25,6 @@
             app:layout_constraintBottom_toTopOf="@id/fragment_container"
             app:title="Application"/>
 
-
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="0dp"
@@ -45,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
+            app:itemIconTint="#515C6F"
+            app:itemTextColor="#727C8E"
             android:background="?android:attr/windowBackground"
             app:layout_constraintTop_toBottomOf="@id/fragment_container"
             app:layout_constraintBottom_toBottomOf="parent"

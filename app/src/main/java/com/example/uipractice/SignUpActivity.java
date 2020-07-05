@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     private Button buttonSignUp;
@@ -29,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private CheckBox checkBoxTerms;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onStart() {
@@ -55,12 +61,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         progressDialog = new ProgressDialog(this);
         buttonSignUp.setOnClickListener(this);
         buttonLogInDisplay.setOnClickListener(this);
-
+        FirebaseDatabase database =  FirebaseDatabase.getInstance();
+        DatabaseReference Myref = database.getReference();
     }
+
     private void registerUser(){
-        String firstName = editTextFirstName.getText().toString().trim();
-        String lastName = editTextLastName.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
+        final String firstName = editTextFirstName.getText().toString().trim();
+        final String lastName = editTextLastName.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
         String confirmPassword  = editTextConfirmPassword.getText().toString().trim();
         if(TextUtils.isEmpty(firstName)){
@@ -97,6 +105,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        String userid = firebaseAuth.getCurrentUser().getUid();
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
+                        Map saveData = new HashMap();
+                        {
+                            saveData.put("First Name", firstName);
+                            saveData.put("Last Name", lastName);
+                            saveData.put("Email", email);
+                        }
+                        current_user_db.setValue(saveData);
                         finish();
                         startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                     } else {

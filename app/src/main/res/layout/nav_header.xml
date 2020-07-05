@@ -35,7 +35,7 @@
         android:layout_marginTop="5sp"
         android:padding="5sp"
         android:gravity="start"
-        android:text="Aarush Maurya"
+        android:text="Name"
         android:textColor="#515C6F"
         android:textSize="18sp"/>
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:textColor="#515C6F"
         android:padding="5sp"
-        android:text="anchalmaurya111@gmail.com"
+        android:text="Email"
         android:textSize="13sp"/>
         <TextView
             android:id="@+id/text_view_edit_profile"

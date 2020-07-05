@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
     <item android:id="@+id/nav_item_wish_list"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
@@ -20,7 +21,7 @@
         android:title="Legal Information" />
     </group>
     <group android:id="@+id/group_menu">
-    <item android:id="@+id/nav_item_customer_support"
+    <item android:id="@+id/nav_item_rate_our_app"
         android:icon="@drawable/ic_baseline_headset_mic_24"
         android:title="Rate our App" />
     <item android:id="@+id/nav_item_make_a_suggestion"
